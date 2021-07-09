@@ -27,12 +27,13 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: sudo apt-get install python3 build-essential clang scons pkg-config libx11-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
+        run: sudo apt-get install python3 build-essential clang scons pkg-config libx11-dev libxcursor-dev mingw-w64 libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
           scons -j$(nproc) platform=linuxbsd use_llvm=yes target=release_debug bits=64 use_lld=yes
+          scons -j$(nproc) platform=windows target=release_debug bits=64
           
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.2.4
