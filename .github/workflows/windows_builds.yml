@@ -62,11 +62,12 @@ jobs:
     - name: Unit Tests
       run: |
         ./bin/godot.windows.opt.tools.64.exe --test
+        zip -r godot.zip .
 
     - uses: actions/upload-artifact@v2
       with:
         name: ${{ github.job }}
-        path: .
+        path: godot.zip
         retention-days: 14
 
   windows-template:
